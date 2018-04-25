@@ -1,3 +1,3 @@
-## Project
+## Pokedex
 
 in progress...
