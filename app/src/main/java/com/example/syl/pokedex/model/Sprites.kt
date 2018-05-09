@@ -1,4 +1,4 @@
-package com.example.syl.pokedex.global.model
+package com.example.syl.pokedex.model
 
 class Sprites(
         var frontDefault: String? = "",

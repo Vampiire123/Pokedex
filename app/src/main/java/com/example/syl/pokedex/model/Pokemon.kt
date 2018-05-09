@@ -1,4 +1,4 @@
-package com.example.syl.pokedex.global.model
+package com.example.syl.pokedex.model
 
 data class Pokemon (
         var name: String? = "",
