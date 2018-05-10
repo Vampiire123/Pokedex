@@ -18,20 +18,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_search">
 
+        <ProgressBar
+            android:id="@+id/pb_sprite_shiny"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:indeterminate="true" />
+
         <ImageView
             android:id="@+id/iv_sprite_shiny"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_weight="1"
+            android:visibility="gone"
             app:srcCompat="@mipmap/ic_launcher_round"
             tools:layout_editor_absoluteX="232dp"
             tools:layout_editor_absoluteY="220dp" />
+
+        <ProgressBar
+            android:id="@+id/pb_sprite_default"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:indeterminate="true" />
 
         <ImageView
             android:id="@+id/iv_sprite_default"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_weight="1"
+            android:visibility="gone"
             app:srcCompat="@mipmap/ic_launcher_round"
             tools:layout_editor_absoluteX="80dp"
             tools:layout_editor_absoluteY="220dp" />
@@ -39,13 +53,14 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="0dp"
+        android:layout_width="384dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Loading..."
+        android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_refresh"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +70,7 @@
         android:id="@+id/et_num_pokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="1 to 802"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -67,11 +83,22 @@
         android:id="@+id/btn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/et_num_pokemon"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
 </android.support.constraint.ConstraintLayout>

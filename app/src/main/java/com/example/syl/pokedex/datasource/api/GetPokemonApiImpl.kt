@@ -2,7 +2,7 @@ package com.example.syl.pokedex.datasource.api
 
 import com.example.syl.pokedex.datasource.PokemonService
 import com.example.syl.pokedex.model.Pokemon
-import com.example.syl.pokedex.usecase.GetRandomPokemon
+import com.example.syl.pokedex.usecase.GetPokemon
 import com.google.gson.JsonSyntaxException
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -10,8 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 
-class GetRandomPokemonApiImpl: GetRandomPokemon {
-    override fun getRandomPokemon(): Pair<Pokemon?, Exception?> {
+class GetPokemonApiImpl: GetPokemon {
+    override fun getPokemon(num: String): Pair<Pokemon?, Exception?> {
         val httpClient = OkHttpClient.Builder()
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/pokemon/")
@@ -20,7 +20,7 @@ class GetRandomPokemonApiImpl: GetRandomPokemon {
                 .build()
 
         val service = retrofit.create<PokemonService>(PokemonService::class.java)
-        val callSync = service.randomPokemon()
+        val callSync = service.getPokemon(num)
 
         try {
             val response: Response<PokemonApiEntry> = callSync.execute()
