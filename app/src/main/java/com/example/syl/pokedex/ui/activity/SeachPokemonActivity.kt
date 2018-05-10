@@ -1,9 +1,6 @@
 package com.example.syl.pokedex.ui.activity
 
-import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -14,6 +11,8 @@ import com.example.syl.pokedex.datasource.api.GetRandomPokemonApiImpl
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.ui.presenter.SearchPokemonPresenter
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.launch
 
 class SeachPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
@@ -38,8 +37,9 @@ class SeachPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         mainPresenter = SearchPokemonPresenter(this, getRandomPokemonApiImpl)
         mainPresenter?.view = this
 
-        mainPresenter?.initialize()
-        //Picasso.with(this).load("http://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/img_01.jpg").into(iv_front_default)
+        launch(CommonPool) {
+            mainPresenter?.initialize()
+        }
     }
 
     override fun showPokemon(pokemon: Pokemon?) = runOnUiThread {
