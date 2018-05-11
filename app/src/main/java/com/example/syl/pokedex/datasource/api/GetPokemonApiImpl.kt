@@ -16,6 +16,7 @@
 package com.example.syl.pokedex.datasource.api
 
 import com.example.syl.pokedex.datasource.PokemonService
+import com.example.syl.pokedex.datasource.api.model.PokemonApiEntry
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.usecase.GetPokemon
 import com.google.gson.JsonSyntaxException
@@ -24,14 +25,19 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 
-class GetPokemonApiImpl: GetPokemon {
+class GetPokemonApiImpl: GetPokemon, ApiRequest {
     override fun getPokemon(num: String): Pair<Pokemon?, Exception?> {
         val httpClient = OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build()
+
         val retrofit = Retrofit.Builder()
-                .baseUrl("https://pokeapi.co/api/v2/pokemon/")
+                .baseUrl(EndPoint())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
+                .client(httpClient)
                 .build()
 
         val service = retrofit.create<PokemonService>(PokemonService::class.java)

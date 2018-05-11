@@ -13,16 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.syl.pokedex.datasource
+package com.example.syl.pokedex.datasource.api
 
-import com.example.syl.pokedex.datasource.api.model.PokemonApiEntry
-
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Url
-
-interface PokemonService {
-
-    @GET
-    fun getPokemon(@Url num: String): Call<PokemonApiEntry>
+interface ApiRequest {
+    fun EndPoint() : String {
+        return "https://pokeapi.co/api/v2/pokemon/"
+    }
 }

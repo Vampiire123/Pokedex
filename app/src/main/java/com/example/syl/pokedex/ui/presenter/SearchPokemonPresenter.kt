@@ -16,7 +16,12 @@
 package com.example.syl.pokedex.ui.presenter
 
 import android.content.Context
+import android.util.Log
+import android.view.KeyEvent
+import android.webkit.WebView
+import com.example.syl.pokedex.model.InfoType
 import com.example.syl.pokedex.model.Pokemon
+import com.example.syl.pokedex.model.Type
 import com.example.syl.pokedex.usecase.GetPokemon
 import kotlinx.coroutines.experimental.async
 import java.util.*
@@ -36,7 +41,7 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
             val pokemon = result?.first
             view?.showPokemon(pokemon)
         } else {
-            view?.showError(result?.second!!)
+            view?.showError(result?.second?.message)
         }
     }
 
@@ -45,18 +50,12 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
     }
 
     suspend fun onSearchButtonClicked(num: String) {
+        view?.hideKeyboard()
         view?.showLoading()
-        if (validNum(num)) {
-            searchPokemon(num)
-        } else {
-            view?.showError(Exception("Write a valid num between 1 and 802"))
-        }
-        view?.hideLoading()
-    }
 
-    fun validNum(num: String) : Boolean {
-        val number = Integer.parseInt(num)
-        return number in 1..802
+        searchPokemon(num)
+
+        view?.hideLoading()
     }
 
     suspend fun getRandomPokemon() {
@@ -69,17 +68,29 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         }.await()
         if (result?.first != null) {
             val pokemon = result?.first
+
             view?.showPokemon(pokemon)
         } else {
-            view?.showError(result?.second!!)
+            view?.showError(result?.second?.message)
         }
         view?.hideLoading()
     }
 
+    fun onBackPressed() {
+        view?.hideTypeTable()
+    }
+
+    fun onTypeTableButtonClicked() {
+        view?.showTypeTable()
+    }
+
     interface View {
+        fun hideTypeTable()
+        fun showTypeTable()
+        fun hideKeyboard()
         fun hideLoading()
         fun showLoading()
         fun showPokemon(pokemon: Pokemon?)
-        fun showError(msg: Exception)
+        fun showError(msg: String?)
     }
 }

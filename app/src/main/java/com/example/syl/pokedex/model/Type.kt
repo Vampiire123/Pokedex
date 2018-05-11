@@ -13,17 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.syl.pokedex.datasource.api
+package com.example.syl.pokedex.model
 
-import com.example.syl.pokedex.model.Pokemon
-import com.example.syl.pokedex.model.Sprites
-
-class PokemonApiEntry(
-        var name: String? = "",
-        var sprites: SpritesApiEntry? = null
-) {
-    fun toDomain(): Pokemon = Pokemon(
-            name = name,
-            sprites = sprites?.toDomain()
-    )
+data class Type(
+        var type: InfoType? = null
+){
+    override fun toString(): String {
+        return "${type?.name}"
+    }
 }

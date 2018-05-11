@@ -13,16 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.syl.pokedex.datasource.api
+package com.example.syl.pokedex.datasource.api.model
 
-import com.example.syl.pokedex.model.Sprites
+import com.example.syl.pokedex.model.Pokemon
+import com.example.syl.pokedex.model.Type
 
-class SpritesApiEntry(
-        var front_default: String? = "",
-        var front_shiny: String? = ""
+class PokemonApiEntry(
+        var name: String? = "",
+        var sprites: SpritesApiEntry? = null,
+        var types: List<TypeApiEntry>? = null
 ) {
-    fun toDomain(): Sprites = Sprites(
-            frontDefault = front_default,
-            frontShiny = front_shiny
+    fun toDomain(): Pokemon = Pokemon(
+            name = name,
+            sprites = sprites?.toDomain(),
+            types = parseTypes()
     )
+
+    private fun parseTypes(): List<Type> {
+        val result = types?.map {
+            it.toDomain()
+        }
+
+        return result ?: emptyList()
+    }
 }

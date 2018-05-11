@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.syl.pokedex.datasource
+package com.example.syl.pokedex.datasource.api.model
 
-import com.example.syl.pokedex.datasource.api.model.PokemonApiEntry
+import com.example.syl.pokedex.model.Sprites
 
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Url
-
-interface PokemonService {
-
-    @GET
-    fun getPokemon(@Url num: String): Call<PokemonApiEntry>
+class SpritesApiEntry(
+        var front_default: String? = "",
+        var front_shiny: String? = ""
+) {
+    fun toDomain(): Sprites = Sprites(
+            frontDefault = front_default,
+            frontShiny = front_shiny
+    )
 }
