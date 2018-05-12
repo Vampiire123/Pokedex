@@ -16,6 +16,8 @@
 package com.example.syl.pokedex.ui.activity
 
 import android.content.Context
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.view.View
@@ -53,6 +55,9 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setIcon(R.mipmap.ic_launcher_foreground)
+
         cl_pokemon = findViewById(R.id.ll_pokemon)
         et_num_pokemon = findViewById(R.id.et_num_pokemon)
         btn_search = findViewById(R.id.btn_search)
@@ -65,6 +70,11 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         tv_type = findViewById(R.id.tv_type)
         btn_type_table = findViewById(R.id.btn_type_table)
         wv_type_table = findViewById(R.id.wv_type_table)
+
+        wv_type_table?.settings?.setSupportZoom(true)
+        wv_type_table?.settings?.builtInZoomControls = true
+        wv_type_table?.settings?.loadWithOverviewMode = true
+        wv_type_table?.settings?.useWideViewPort = true
 
         searchPokemonPresenter = SearchPokemonPresenter(this, GetPokemonApiImpl())
         searchPokemonPresenter?.view = this
@@ -102,8 +112,8 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         pb_sprite_default?.visibility = View.VISIBLE
         pb_sprite_shiny?.visibility = View.VISIBLE
 
-        tv_name?.text = "Loading..."
-        tv_type?.text = "Loading..."
+        tv_name?.text = getString(R.string.loading)
+        tv_type?.text = getString(R.string.loading)
     }
 
     override fun hideLoading() = runOnUiThread {
@@ -115,6 +125,14 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
     override fun showError(msg: String?) = runOnUiThread {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+
+        tv_type?.text = "-"
+        tv_name?.text = "-"
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            iv_front_default?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            iv_front_shiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+        }
     }
 
     override fun hideKeyboard() {
@@ -123,16 +141,18 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
     }
 
     override fun showTypeTable() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         var webSettings = wv_type_table?.settings
         webSettings?.javaScriptEnabled = true
         wv_type_table?.webViewClient = WebViewClient()
-        wv_type_table?.loadUrl("http://images.eurogamer.net/2013/usgamer/IMAGE4.jpg")
+        wv_type_table?.loadUrl(getString(R.string.url_type_table))
 
         wv_type_table?.visibility = View.VISIBLE
         cl_pokemon?.visibility = View.GONE
     }
 
     override fun hideTypeTable() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         cl_pokemon?.visibility = View.VISIBLE
         wv_type_table?.visibility = View.GONE
     }

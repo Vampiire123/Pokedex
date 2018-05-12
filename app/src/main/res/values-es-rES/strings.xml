@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokédex</string>
+    <string name="loading">Cargando...</string>
+    <string name="et_search_empty">Escribe el nombre de un pokemon o su número de pokédex</string>
+    <string name="et_search_placeholder">Número o nombre</string>
+    <string name="search">Buscar</string>
+    <string name="type_table">Tabla Tipos</string>
+    <string name="random">Random</string>
+</resources>

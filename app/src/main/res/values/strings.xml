@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Pokedex</string>
+    <string name="app_name">Pokédex</string>
+    <string name="url_type_table" translatable="false">http://images.eurogamer.net/2013/usgamer/IMAGE4.jpg</string>
+    <string name="loading">Loading...</string>
+    <string name="et_search_empty">Write one pokemon\'s name or its number</string>
+    <string name="et_search_placeholder">Number or Name</string>
+    <string name="search">Search</string>
+    <string name="type_table">Type Table</string>
+    <string name="random">Random</string>
 </resources>

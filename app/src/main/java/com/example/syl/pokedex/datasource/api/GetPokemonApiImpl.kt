@@ -19,8 +19,10 @@ import com.example.syl.pokedex.datasource.PokemonService
 import com.example.syl.pokedex.datasource.api.model.PokemonApiEntry
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.usecase.GetPokemon
+import com.google.gson.JsonObject
 import com.google.gson.JsonSyntaxException
 import okhttp3.OkHttpClient
+import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,8 +32,8 @@ import java.util.concurrent.TimeUnit
 class GetPokemonApiImpl: GetPokemon, ApiRequest {
     override fun getPokemon(num: String): Pair<Pokemon?, Exception?> {
         val httpClient = OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
                 .build()
 
         val retrofit = Retrofit.Builder()
@@ -49,7 +51,8 @@ class GetPokemonApiImpl: GetPokemon, ApiRequest {
             if (response.body() is PokemonApiEntry) {
                 return Pair(response.body()?.toDomain(), null)
             } else if (response.errorBody() != null){
-                return Pair(null, Exception(response.errorBody().toString()))
+                val jsonObject = JSONObject(response.errorBody()?.string())
+                return Pair(null, Exception(jsonObject.getString("detail")))
             } else {
                 return Pair(null, Exception("Unknown error"))
             }

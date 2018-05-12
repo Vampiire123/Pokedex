@@ -19,6 +19,7 @@ import android.content.Context
 import android.util.Log
 import android.view.KeyEvent
 import android.webkit.WebView
+import com.example.syl.pokedex.R
 import com.example.syl.pokedex.model.InfoType
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.model.Type
@@ -53,7 +54,11 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         view?.hideKeyboard()
         view?.showLoading()
 
-        searchPokemon(num)
+        if(num == "") {
+            view?.showError(context.getString(R.string.et_search_empty))
+        } else {
+            searchPokemon(num)
+        }
 
         view?.hideLoading()
     }
