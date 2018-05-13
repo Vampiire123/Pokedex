@@ -7,4 +7,22 @@
     <string name="search">Search</string>
     <string name="type_table">Type Table</string>
     <string name="random">Random</string>
+    <string name="normal" translatable="false">Normal</string>
+    <string name="fight">Fight</string>
+    <string name="fly">Flying</string>
+    <string name="poison">Poison</string>
+    <string name="ground">Ground</string>
+    <string name="rock">Rock</string>
+    <string name="bug">Bug</string>
+    <string name="ghost">Ghost</string>
+    <string name="steel">Steel</string>
+    <string name="fire">Fire</string>
+    <string name="water">Water</string>
+    <string name="grass">Grass</string>
+    <string name="electric">Electric</string>
+    <string name="psychic">Psychic</string>
+    <string name="ice">Ice</string>
+    <string name="dragon">Dragon</string>
+    <string name="dark">Dark</string>
+    <string name="fairy">Fairy</string>
 </resources>

@@ -7,4 +7,21 @@
     <string name="search">Buscar</string>
     <string name="type_table">Tabla Tipos</string>
     <string name="random">Random</string>
+    <string name="fire">Fuego</string>
+    <string name="fight">Lucha</string>
+    <string name="fly">Volador</string>
+    <string name="poison">Veneno</string>
+    <string name="ground">Tierra</string>
+    <string name="rock">Roca</string>
+    <string name="bug">Bicho</string>
+    <string name="ghost">Fantasma</string>
+    <string name="steel">Acero</string>
+    <string name="water">Agua</string>
+    <string name="electric">Eléctrico</string>
+    <string name="psychic">Psíquico</string>
+    <string name="ice">Hielo</string>
+    <string name="dragon">Dragón</string>
+    <string name="dark">Siniestro</string>
+    <string name="fairy">Hada</string>
+    <string name="grass">Planta</string>
 </resources>

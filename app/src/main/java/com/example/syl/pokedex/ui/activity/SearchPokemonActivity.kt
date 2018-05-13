@@ -15,6 +15,7 @@
  */
 package com.example.syl.pokedex.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -33,6 +34,8 @@ import kotlinx.coroutines.experimental.launch
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.example.syl.pokedex.model.Type
+import com.example.syl.pokedex.model.TypesLanguage
 
 
 class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
@@ -44,8 +47,6 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
     var iv_front_default: ImageView? = null
     var iv_front_shiny: ImageView? = null
     var tv_name: TextView? = null
-    var pb_sprite_default: ProgressBar? = null
-    var pb_sprite_shiny: ProgressBar? = null
     var tv_type: TextView? = null
     var wv_type_table: WebView? = null
     lateinit var btn_refresh: Button
@@ -64,8 +65,6 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         iv_front_default = findViewById(R.id.iv_sprite_default)
         iv_front_shiny = findViewById(R.id.iv_sprite_shiny)
         tv_name = findViewById(R.id.tv_name)
-        pb_sprite_default = findViewById(R.id.pb_sprite_default)
-        pb_sprite_shiny = findViewById(R.id.pb_sprite_shiny)
         btn_refresh = findViewById(R.id.btn_refresh)
         tv_type = findViewById(R.id.tv_type)
         btn_type_table = findViewById(R.id.btn_type_table)
@@ -98,29 +97,94 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun showPokemon(pokemon: Pokemon?) = runOnUiThread {
         tv_name?.text = pokemon?.name
-        tv_type?.text = pokemon?.types?.toString()
 
-        Picasso.with(this).load(pokemon?.sprites?.frontDefault).into(iv_front_default)
-        Picasso.with(this).load(pokemon?.sprites?.frontShiny).into(iv_front_shiny)
+        var typeText: String = ""
+
+        var types = pokemon?.types
+        for (type: Type in types!!) {
+            if (type.type?.name?.equals(TypesLanguage.fire.toString())!!) {
+                typeText += " " + getString(R.string.fire)
+            }
+            if (type.type?.name?.equals(TypesLanguage.normal.toString())!!) {
+                typeText += " " + getString(R.string.normal)
+            }
+            if (type.type?.name?.equals(TypesLanguage.fighting.toString())!!) {
+                typeText += " " + getString(R.string.fight)
+            }
+            if (type.type?.name?.equals(TypesLanguage.flying.toString())!!) {
+                typeText += " " + getString(R.string.fly)
+            }
+            if (type.type?.name?.equals(TypesLanguage.poison.toString())!!) {
+                typeText += " " + getString(R.string.poison)
+            }
+            if (type.type?.name?.equals(TypesLanguage.ground.toString())!!) {
+                typeText += " " + getString(R.string.ground)
+            }
+            if (type.type?.name?.equals(TypesLanguage.rock.toString())!!) {
+                typeText += " " + getString(R.string.rock)
+            }
+            if (type.type?.name?.equals(TypesLanguage.grass.toString())!!) {
+                typeText += " " + getString(R.string.grass)
+            }
+            if (type.type?.name?.equals(TypesLanguage.bug.toString())!!) {
+                typeText += " " + getString(R.string.bug)
+            }
+            if (type.type?.name?.equals(TypesLanguage.ghost.toString())!!) {
+                typeText += " " + getString(R.string.ghost)
+            }
+            if (type.type?.name?.equals(TypesLanguage.steel.toString())!!) {
+                typeText += " " + getString(R.string.steel)
+            }
+            if (type.type?.name?.equals(TypesLanguage.water.toString())!!) {
+                typeText += " " + getString(R.string.water)
+            }
+            if (type.type?.name?.equals(TypesLanguage.electric.toString())!!) {
+                typeText += " " + getString(R.string.electric)
+            }
+            if (type.type?.name?.equals(TypesLanguage.psychic.toString())!!) {
+                typeText += " " + getString(R.string.psychic)
+            }
+            if (type.type?.name?.equals(TypesLanguage.ice.toString())!!) {
+                typeText += " " + getString(R.string.ice)
+            }
+            if (type.type?.name?.equals(TypesLanguage.dragon.toString())!!) {
+                typeText += " " + getString(R.string.dragon)
+            }
+            if (type.type?.name?.equals(TypesLanguage.dark.toString())!!) {
+                typeText += " " + getString(R.string.dark)
+            }
+            if (type.type?.name?.equals(TypesLanguage.fairy.toString())!!) {
+                typeText += " " + getString(R.string.fairy)
+            }
+        }
+
+        tv_type?.text = typeText
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Picasso.with(this)
+                    .load(pokemon?.sprites?.frontDefault)
+                    .placeholder(getDrawable(R.drawable.silueta_interrogante))
+                    .error(getDrawable(R.drawable.silueta_interrogante))
+                    .into(iv_front_default)
+            Picasso.with(this)
+                    .load(pokemon?.sprites?.frontShiny)
+                    .placeholder(getDrawable(R.drawable.silueta_interrogante))
+                    .error(getDrawable(R.drawable.silueta_interrogante))
+                    .into(iv_front_shiny)
+        }
     }
 
     override fun showLoading() = runOnUiThread {
-        iv_front_shiny?.visibility = View.GONE
-        iv_front_default?.visibility = View.GONE
-        pb_sprite_default?.visibility = View.VISIBLE
-        pb_sprite_shiny?.visibility = View.VISIBLE
-
         tv_name?.text = getString(R.string.loading)
         tv_type?.text = getString(R.string.loading)
-    }
 
-    override fun hideLoading() = runOnUiThread {
-        iv_front_shiny?.visibility = View.VISIBLE
-        iv_front_default?.visibility = View.VISIBLE
-        pb_sprite_default?.visibility = View.GONE
-        pb_sprite_shiny?.visibility = View.GONE
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            iv_front_shiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            iv_front_default?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+        }
     }
 
     override fun showError(msg: String?) = runOnUiThread {

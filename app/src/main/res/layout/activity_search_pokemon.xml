@@ -73,37 +73,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-            <ProgressBar
-                android:id="@+id/pb_sprite_shiny"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_weight="1"
-                android:indeterminate="true" />
-
             <ImageView
                 android:id="@+id/iv_sprite_shiny"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_weight="1"
-                android:visibility="gone"
-                app:srcCompat="@mipmap/ic_launcher_round"
+                android:visibility="visible"
+                app:srcCompat="@drawable/loading"
                 tools:layout_editor_absoluteX="232dp"
                 tools:layout_editor_absoluteY="220dp" />
-
-            <ProgressBar
-                android:id="@+id/pb_sprite_default"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_weight="1"
-                android:indeterminate="true" />
 
             <ImageView
                 android:id="@+id/iv_sprite_default"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_weight="1"
-                android:visibility="gone"
-                app:srcCompat="@mipmap/ic_launcher_round"
+                android:visibility="visible"
+                app:srcCompat="@drawable/loading"
                 tools:layout_editor_absoluteX="80dp"
                 tools:layout_editor_absoluteY="220dp" />
         </LinearLayout>

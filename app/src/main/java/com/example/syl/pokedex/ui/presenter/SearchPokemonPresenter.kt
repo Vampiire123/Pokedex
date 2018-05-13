@@ -59,8 +59,6 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         } else {
             searchPokemon(num)
         }
-
-        view?.hideLoading()
     }
 
     suspend fun getRandomPokemon() {
@@ -78,7 +76,6 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         } else {
             view?.showError(result?.second?.message)
         }
-        view?.hideLoading()
     }
 
     fun onBackPressed() {
@@ -93,7 +90,6 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         fun hideTypeTable()
         fun showTypeTable()
         fun hideKeyboard()
-        fun hideLoading()
         fun showLoading()
         fun showPokemon(pokemon: Pokemon?)
         fun showError(msg: String?)
