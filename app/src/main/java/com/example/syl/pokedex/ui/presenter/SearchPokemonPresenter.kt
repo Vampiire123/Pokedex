@@ -23,6 +23,7 @@ import com.example.syl.pokedex.R
 import com.example.syl.pokedex.model.InfoType
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.model.Type
+import com.example.syl.pokedex.model.TypesLanguage
 import com.example.syl.pokedex.usecase.GetPokemon
 import kotlinx.coroutines.experimental.async
 import java.util.*
@@ -76,6 +77,70 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         } else {
             view?.showError(result?.second?.message)
         }
+    }
+    
+    fun returnTypeOfPokemon(pokemon: Pokemon?): String {
+        var typeText: String = ""
+
+        var types = pokemon?.types
+        for (type: Type in types!!) {
+            if (type.type?.name?.equals(TypesLanguage.fire.toString())!!) {
+                typeText += " " + context.getString(R.string.fire)
+            }
+            if (type.type?.name?.equals(TypesLanguage.normal.toString())!!) {
+                typeText += " " + context.getString(R.string.normal)
+            }
+            if (type.type?.name?.equals(TypesLanguage.fighting.toString())!!) {
+                typeText += " " + context.getString(R.string.fight)
+            }
+            if (type.type?.name?.equals(TypesLanguage.flying.toString())!!) {
+                typeText += " " + context.getString(R.string.fly)
+            }
+            if (type.type?.name?.equals(TypesLanguage.poison.toString())!!) {
+                typeText += " " + context.getString(R.string.poison)
+            }
+            if (type.type?.name?.equals(TypesLanguage.ground.toString())!!) {
+                typeText += " " + context.getString(R.string.ground)
+            }
+            if (type.type?.name?.equals(TypesLanguage.rock.toString())!!) {
+                typeText += " " + context.getString(R.string.rock)
+            }
+            if (type.type?.name?.equals(TypesLanguage.grass.toString())!!) {
+                typeText += " " + context.getString(R.string.grass)
+            }
+            if (type.type?.name?.equals(TypesLanguage.bug.toString())!!) {
+                typeText += " " + context.getString(R.string.bug)
+            }
+            if (type.type?.name?.equals(TypesLanguage.ghost.toString())!!) {
+                typeText += " " + context.getString(R.string.ghost)
+            }
+            if (type.type?.name?.equals(TypesLanguage.steel.toString())!!) {
+                typeText += " " + context.getString(R.string.steel)
+            }
+            if (type.type?.name?.equals(TypesLanguage.water.toString())!!) {
+                typeText += " " + context.getString(R.string.water)
+            }
+            if (type.type?.name?.equals(TypesLanguage.electric.toString())!!) {
+                typeText += " " + context.getString(R.string.electric)
+            }
+            if (type.type?.name?.equals(TypesLanguage.psychic.toString())!!) {
+                typeText += " " + context.getString(R.string.psychic)
+            }
+            if (type.type?.name?.equals(TypesLanguage.ice.toString())!!) {
+                typeText += " " + context.getString(R.string.ice)
+            }
+            if (type.type?.name?.equals(TypesLanguage.dragon.toString())!!) {
+                typeText += " " + context.getString(R.string.dragon)
+            }
+            if (type.type?.name?.equals(TypesLanguage.dark.toString())!!) {
+                typeText += " " + context.getString(R.string.dark)
+            }
+            if (type.type?.name?.equals(TypesLanguage.fairy.toString())!!) {
+                typeText += " " + context.getString(R.string.fairy)
+            }
+        }
+        
+        return typeText
     }
 
     fun onBackPressed() {

@@ -101,67 +101,7 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
     override fun showPokemon(pokemon: Pokemon?) = runOnUiThread {
         tv_name?.text = pokemon?.name
 
-        var typeText: String = ""
-
-        var types = pokemon?.types
-        for (type: Type in types!!) {
-            if (type.type?.name?.equals(TypesLanguage.fire.toString())!!) {
-                typeText += " " + getString(R.string.fire)
-            }
-            if (type.type?.name?.equals(TypesLanguage.normal.toString())!!) {
-                typeText += " " + getString(R.string.normal)
-            }
-            if (type.type?.name?.equals(TypesLanguage.fighting.toString())!!) {
-                typeText += " " + getString(R.string.fight)
-            }
-            if (type.type?.name?.equals(TypesLanguage.flying.toString())!!) {
-                typeText += " " + getString(R.string.fly)
-            }
-            if (type.type?.name?.equals(TypesLanguage.poison.toString())!!) {
-                typeText += " " + getString(R.string.poison)
-            }
-            if (type.type?.name?.equals(TypesLanguage.ground.toString())!!) {
-                typeText += " " + getString(R.string.ground)
-            }
-            if (type.type?.name?.equals(TypesLanguage.rock.toString())!!) {
-                typeText += " " + getString(R.string.rock)
-            }
-            if (type.type?.name?.equals(TypesLanguage.grass.toString())!!) {
-                typeText += " " + getString(R.string.grass)
-            }
-            if (type.type?.name?.equals(TypesLanguage.bug.toString())!!) {
-                typeText += " " + getString(R.string.bug)
-            }
-            if (type.type?.name?.equals(TypesLanguage.ghost.toString())!!) {
-                typeText += " " + getString(R.string.ghost)
-            }
-            if (type.type?.name?.equals(TypesLanguage.steel.toString())!!) {
-                typeText += " " + getString(R.string.steel)
-            }
-            if (type.type?.name?.equals(TypesLanguage.water.toString())!!) {
-                typeText += " " + getString(R.string.water)
-            }
-            if (type.type?.name?.equals(TypesLanguage.electric.toString())!!) {
-                typeText += " " + getString(R.string.electric)
-            }
-            if (type.type?.name?.equals(TypesLanguage.psychic.toString())!!) {
-                typeText += " " + getString(R.string.psychic)
-            }
-            if (type.type?.name?.equals(TypesLanguage.ice.toString())!!) {
-                typeText += " " + getString(R.string.ice)
-            }
-            if (type.type?.name?.equals(TypesLanguage.dragon.toString())!!) {
-                typeText += " " + getString(R.string.dragon)
-            }
-            if (type.type?.name?.equals(TypesLanguage.dark.toString())!!) {
-                typeText += " " + getString(R.string.dark)
-            }
-            if (type.type?.name?.equals(TypesLanguage.fairy.toString())!!) {
-                typeText += " " + getString(R.string.fairy)
-            }
-        }
-
-        tv_type?.text = typeText
+        tv_type?.text = searchPokemonPresenter?.returnTypeOfPokemon(pokemon)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Picasso.with(this)
