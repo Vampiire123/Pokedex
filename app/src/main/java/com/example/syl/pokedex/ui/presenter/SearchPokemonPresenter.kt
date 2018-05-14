@@ -47,7 +47,7 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         }
     }
 
-    suspend fun onRefreshButtonClicked() {
+    suspend fun onRandomButtonClicked() {
         getRandomPokemon()
     }
 

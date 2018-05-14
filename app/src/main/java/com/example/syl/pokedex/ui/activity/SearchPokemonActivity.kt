@@ -34,8 +34,6 @@ import kotlinx.coroutines.experimental.launch
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.example.syl.pokedex.model.Type
-import com.example.syl.pokedex.model.TypesLanguage
 
 
 class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
@@ -80,7 +78,7 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
         btn_refresh.setOnClickListener({
             launch(CommonPool) {
-                searchPokemonPresenter?.onRefreshButtonClicked()
+                searchPokemonPresenter?.onRandomButtonClicked()
             }
         })
         btn_search.setOnClickListener({
