@@ -15,7 +15,6 @@
  */
 package com.example.syl.pokedex.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -38,9 +37,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.example.syl.pokedex.model.Type
-import com.example.syl.pokedex.model.TypesLanguage
-import java.util.*
 
 class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 

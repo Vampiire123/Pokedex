@@ -22,7 +22,8 @@ import com.example.syl.pokedex.model.Type
 import com.example.syl.pokedex.model.TypesLanguage
 import com.example.syl.pokedex.usecase.GetPokemon
 import kotlinx.coroutines.experimental.async
-import java.util.*
+import java.util.Random
+import java.util.Locale
 
 class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) : Presenter<SearchPokemonPresenter.View>() {
 

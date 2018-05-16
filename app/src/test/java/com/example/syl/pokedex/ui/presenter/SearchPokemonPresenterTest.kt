@@ -127,7 +127,10 @@ class SearchPokemonPresenterTest {
 
     @Test
     fun `should show pokemon when introducing a pokemon's name and search button is clicked`() {
-        givenApiReturnsAPokemon(Pokemon())
+        val pokemon = Pokemon()
+        pokemon.types = mutableListOf()
+
+        givenApiReturnsAPokemon(pokemon)
 
         runBlocking {
             presenter.onSearchButtonClicked("charmander")
