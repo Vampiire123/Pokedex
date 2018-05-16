@@ -78,138 +78,22 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
     }
 
     fun typesToLoad(pokemon: Pokemon?) {
-        var types = pokemon?.types
+        val types = pokemon?.types
+        val languageType = TypesLanguage.values()
 
         for (type: Type in types!!) {
-            if (type.type?.name?.equals(TypesLanguage.Fire.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Fire.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Fire.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Normal.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Normal.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Normal.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Fighting.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Fighting.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Fighting.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Flying.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Flying.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Flying.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Poison.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Poison.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Poison.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Ground.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Ground.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Ground.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Rock.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Rock.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Rock.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Grass.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Grass.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Grass.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Bug.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Bug.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Bug.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Ghost.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Ghost.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Ghost.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Steel.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Steel.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Steel.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Water.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Water.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Water.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Electric.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Electric.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Electric.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Psychic.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Psychic.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Psychic.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Ice.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Ice.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Ice.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Dragon.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Dragon.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Dragon.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Dark.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Dark.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Dark.imageUrlSpanish
-                }
-            }
-            if (type.type?.name?.equals(TypesLanguage.Fairy.value)!!) {
-                if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                    type.type?.urlImage = TypesLanguage.Fairy.imageUrlEnglish
-                } else {
-                    type.type?.urlImage = TypesLanguage.Fairy.imageUrlSpanish
+            languageType.forEach {
+                if (type.type?.name?.equals(it.value)!!) {
+                    if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
+                        type.type?.urlImage = it.imageUrlEnglish
+                    } else {
+                        type.type?.urlImage = it.imageUrlSpanish
+                    }
                 }
             }
         }
 
-        pokemon?.types = types
+        pokemon.types = types
     }
 
     fun onBackPressed() {
