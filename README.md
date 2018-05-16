@@ -1,4 +1,4 @@
-<img src="https://travis-ci.org/Vampiire123/Pokedex.svg?branch=master">
+<a href="https://travis-ci.org/Vampiire123/Pokedex"><img src="https://travis-ci.org/Vampiire123/Pokedex.svg?branch=master"></a>
 
 # Pokédex
 
