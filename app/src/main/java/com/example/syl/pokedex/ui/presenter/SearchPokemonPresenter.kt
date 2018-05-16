@@ -16,17 +16,13 @@
 package com.example.syl.pokedex.ui.presenter
 
 import android.content.Context
-import android.util.Log
-import android.view.KeyEvent
-import android.webkit.WebView
 import com.example.syl.pokedex.R
-import com.example.syl.pokedex.model.InfoType
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.model.Type
 import com.example.syl.pokedex.model.TypesLanguage
 import com.example.syl.pokedex.usecase.GetPokemon
 import kotlinx.coroutines.experimental.async
-import java.util.*
+import java.util.Random
 
 class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) : Presenter<SearchPokemonPresenter.View>() {
 
@@ -55,7 +51,7 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
         view?.hideKeyboard()
         view?.showLoading()
 
-        if(num == "") {
+        if (num == "") {
             view?.showError(context.getString(R.string.et_search_empty))
         } else {
             searchPokemon(num)
@@ -78,7 +74,7 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
             view?.showError(result?.second?.message)
         }
     }
-    
+
     fun returnTypeOfPokemon(pokemon: Pokemon?): String {
         var typeText: String = ""
 
@@ -139,7 +135,7 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
                 typeText += " " + context.getString(R.string.fairy)
             }
         }
-        
+
         return typeText
     }
 

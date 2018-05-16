@@ -18,11 +18,7 @@ package com.example.syl.pokedex.datasource.api.model
 import com.example.syl.pokedex.model.Pokemon
 import com.example.syl.pokedex.model.Type
 
-class PokemonApiEntry(
-        var name: String? = "",
-        var sprites: SpritesApiEntry? = null,
-        var types: List<TypeApiEntry>? = null
-) {
+class PokemonApiEntry(var name: String? = "", var sprites: SpritesApiEntry? = null, var types: List<TypeApiEntry>? = null) {
     fun toDomain(): Pokemon = Pokemon(
             name = name,
             sprites = sprites?.toDomain(),

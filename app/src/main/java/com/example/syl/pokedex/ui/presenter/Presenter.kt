@@ -23,5 +23,5 @@ abstract class Presenter<T1> {
         view = null
     }
 
-    var view : T1? = null
+    var view: T1? = null
 }

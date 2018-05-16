@@ -16,7 +16,7 @@
 package com.example.syl.pokedex.datasource.api
 
 interface ApiRequest {
-    fun EndPoint() : String {
+    fun EndPoint(): String {
         return "https://pokeapi.co/api/v2/pokemon/"
     }
 }

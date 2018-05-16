@@ -17,9 +17,7 @@ package com.example.syl.pokedex.datasource.api.model
 
 import com.example.syl.pokedex.model.InfoType
 
-class InfoTypeApiEntry(
-        var name: String
-) {
+class InfoTypeApiEntry(var name: String) {
     inline fun toDomain(): InfoType = InfoType(
             name = name
     )

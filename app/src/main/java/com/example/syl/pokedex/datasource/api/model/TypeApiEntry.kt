@@ -17,10 +17,8 @@ package com.example.syl.pokedex.datasource.api.model
 
 import com.example.syl.pokedex.model.Type
 
-class TypeApiEntry(
-        var type: InfoTypeApiEntry? = null
-) {
-    inline fun toDomain() : Type = Type(
+class TypeApiEntry(var type: InfoTypeApiEntry? = null) {
+    inline fun toDomain(): Type = Type(
             type = type?.toDomain()
     )
 }

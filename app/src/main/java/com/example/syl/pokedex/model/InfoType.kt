@@ -15,6 +15,4 @@
  */
 package com.example.syl.pokedex.model
 
-data class InfoType(
-        var name: String
-)
+data class InfoType(var name: String)

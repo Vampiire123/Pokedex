@@ -22,7 +22,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.view.View
-import android.widget.*
 import com.example.syl.pokedex.R
 
 import com.example.syl.pokedex.datasource.api.GetPokemonApiImpl
@@ -34,22 +33,26 @@ import kotlinx.coroutines.experimental.launch
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
-
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 
 class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
     var searchPokemonPresenter: SearchPokemonPresenter? = null
 
-    var cl_pokemon: ConstraintLayout? = null
-    var et_num_pokemon: EditText? = null
-    var iv_front_default: ImageView? = null
-    var iv_front_shiny: ImageView? = null
-    var tv_name: TextView? = null
-    var tv_type: TextView? = null
-    var wv_type_table: WebView? = null
-    lateinit var btn_refresh: Button
-    lateinit var btn_search: Button
-    lateinit var btn_type_table: Button
+    var clPokemon: ConstraintLayout? = null
+    var etNumPokemon: EditText? = null
+    var ivFrontDefault: ImageView? = null
+    var ivFrontShiny: ImageView? = null
+    var tvName: TextView? = null
+    var tvType: TextView? = null
+    var wvTypeTable: WebView? = null
+    lateinit var btnRefresh: Button
+    lateinit var btnSearch: Button
+    lateinit var btnTypeTable: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,36 +60,36 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.mipmap.ic_launcher_foreground)
 
-        cl_pokemon = findViewById(R.id.ll_pokemon)
-        et_num_pokemon = findViewById(R.id.et_num_pokemon)
-        btn_search = findViewById(R.id.btn_search)
-        iv_front_default = findViewById(R.id.iv_sprite_default)
-        iv_front_shiny = findViewById(R.id.iv_sprite_shiny)
-        tv_name = findViewById(R.id.tv_name)
-        btn_refresh = findViewById(R.id.btn_refresh)
-        tv_type = findViewById(R.id.tv_type)
-        btn_type_table = findViewById(R.id.btn_type_table)
-        wv_type_table = findViewById(R.id.wv_type_table)
+        clPokemon = findViewById(R.id.ll_pokemon)
+        etNumPokemon = findViewById(R.id.et_num_pokemon)
+        btnSearch = findViewById(R.id.btn_search)
+        ivFrontDefault = findViewById(R.id.iv_sprite_default)
+        ivFrontShiny = findViewById(R.id.iv_sprite_shiny)
+        tvName = findViewById(R.id.tv_name)
+        btnRefresh = findViewById(R.id.btn_refresh)
+        tvType = findViewById(R.id.tv_type)
+        btnTypeTable = findViewById(R.id.btn_type_table)
+        wvTypeTable = findViewById(R.id.wv_type_table)
 
-        wv_type_table?.settings?.setSupportZoom(true)
-        wv_type_table?.settings?.builtInZoomControls = true
-        wv_type_table?.settings?.loadWithOverviewMode = true
-        wv_type_table?.settings?.useWideViewPort = true
+        wvTypeTable?.settings?.setSupportZoom(true)
+        wvTypeTable?.settings?.builtInZoomControls = true
+        wvTypeTable?.settings?.loadWithOverviewMode = true
+        wvTypeTable?.settings?.useWideViewPort = true
 
         searchPokemonPresenter = SearchPokemonPresenter(this, GetPokemonApiImpl())
         searchPokemonPresenter?.view = this
 
-        btn_refresh.setOnClickListener({
+        btnRefresh.setOnClickListener({
             launch(CommonPool) {
                 searchPokemonPresenter?.onRandomButtonClicked()
             }
         })
-        btn_search.setOnClickListener({
+        btnSearch.setOnClickListener({
             launch(CommonPool) {
-                searchPokemonPresenter?.onSearchButtonClicked(et_num_pokemon?.text.toString())
+                searchPokemonPresenter?.onSearchButtonClicked(etNumPokemon?.text.toString())
             }
         })
-        btn_type_table.setOnClickListener({
+        btnTypeTable.setOnClickListener({
             searchPokemonPresenter?.onTypeTableButtonClicked()
         })
 
@@ -97,43 +100,43 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
     @SuppressLint("SetTextI18n")
     override fun showPokemon(pokemon: Pokemon?) = runOnUiThread {
-        tv_name?.text = pokemon?.name
+        tvName?.text = pokemon?.name
 
-        tv_type?.text = searchPokemonPresenter?.returnTypeOfPokemon(pokemon)
+        tvType?.text = searchPokemonPresenter?.returnTypeOfPokemon(pokemon)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Picasso.with(this)
                     .load(pokemon?.sprites?.frontDefault)
                     .placeholder(getDrawable(R.drawable.silueta_interrogante))
                     .error(getDrawable(R.drawable.silueta_interrogante))
-                    .into(iv_front_default)
+                    .into(ivFrontDefault)
             Picasso.with(this)
                     .load(pokemon?.sprites?.frontShiny)
                     .placeholder(getDrawable(R.drawable.silueta_interrogante))
                     .error(getDrawable(R.drawable.silueta_interrogante))
-                    .into(iv_front_shiny)
+                    .into(ivFrontShiny)
         }
     }
 
     override fun showLoading() = runOnUiThread {
-        tv_name?.text = getString(R.string.loading)
-        tv_type?.text = getString(R.string.loading)
+        tvName?.text = getString(R.string.loading)
+        tvType?.text = getString(R.string.loading)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            iv_front_shiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
-            iv_front_default?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            ivFrontShiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            ivFrontDefault?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
         }
     }
 
     override fun showError(msg: String?) = runOnUiThread {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
-        tv_type?.text = "-"
-        tv_name?.text = "-"
+        tvType?.text = "-"
+        tvName?.text = "-"
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            iv_front_default?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
-            iv_front_shiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            ivFrontDefault?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            ivFrontShiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
         }
     }
 
@@ -144,19 +147,19 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
     override fun showTypeTable() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        var webSettings = wv_type_table?.settings
+        var webSettings = wvTypeTable?.settings
         webSettings?.javaScriptEnabled = true
-        wv_type_table?.webViewClient = WebViewClient()
-        wv_type_table?.loadUrl(getString(R.string.url_type_table))
+        wvTypeTable?.webViewClient = WebViewClient()
+        wvTypeTable?.loadUrl(getString(R.string.url_type_table))
 
-        wv_type_table?.visibility = View.VISIBLE
-        cl_pokemon?.visibility = View.GONE
+        wvTypeTable?.visibility = View.VISIBLE
+        clPokemon?.visibility = View.GONE
     }
 
     override fun hideTypeTable() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        cl_pokemon?.visibility = View.VISIBLE
-        wv_type_table?.visibility = View.GONE
+        clPokemon?.visibility = View.VISIBLE
+        wvTypeTable?.visibility = View.GONE
     }
 
     override fun onBackPressed() {
