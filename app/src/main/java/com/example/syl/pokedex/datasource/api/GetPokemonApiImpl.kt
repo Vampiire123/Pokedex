@@ -31,8 +31,8 @@ import java.util.concurrent.TimeUnit
 class GetPokemonApiImpl : GetPokemon, ApiRequest {
     override fun getPokemon(num: String): Pair<Pokemon?, Exception?> {
         val httpClient = OkHttpClient.Builder()
-                .readTimeout(20, TimeUnit.SECONDS)
-                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
                 .build()
 
         val retrofit = Retrofit.Builder()

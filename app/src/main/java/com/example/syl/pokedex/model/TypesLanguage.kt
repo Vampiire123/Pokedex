@@ -1,22 +1,22 @@
 package com.example.syl.pokedex.model
 
-enum class TypesLanguage {
-    fire,
-    normal,
-    fighting,
-    flying,
-    poison,
-    ground,
-    rock,
-    grass,
-    bug,
-    ghost,
-    steel,
-    water,
-    electric,
-    psychic,
-    ice,
-    dragon,
-    dark,
-    fairy
+enum class TypesLanguage(val value: String, val imageUrlSpanish: String, val imageUrlEnglish: String) {
+    Fire("fire", "https://vignette.wikia.nocookie.net/es.pokemon/images/c/ce/Tipo_fuego.gif/revision/latest?cb=20170114100331", "https://vignette.wikia.nocookie.net/pokemon/images/4/4d/Type_Fire.gif/revision/latest?cb=20141023234903"),
+    Normal("normal", "https://vignette.wikia.nocookie.net/es.pokemon/images/3/32/Tipo_normal.gif/revision/latest?cb=20170114100442", "https://vignette.wikia.nocookie.net/pokemon/images/6/61/Type_Normal.gif/revision/latest?cb=20141023235047"),
+    Fighting("fighting", "https://vignette.wikia.nocookie.net/es.pokemon/images/b/b7/Tipo_lucha.gif/revision/latest?cb=20170114100336", "https://vignette.wikia.nocookie.net/pokemon/images/6/6b/Type_Fighting.gif/revision/latest?cb=20141023234903"),
+    Flying("flying", "https://vignette.wikia.nocookie.net/es.pokemon/images/e/e1/Tipo_volador.gif/revision/latest?cb=20170114100536", "https://vignette.wikia.nocookie.net/pokemon/images/4/4b/Type_Flying.gif/revision/latest?cb=20141023234904"),
+    Poison("poison", "https://vignette.wikia.nocookie.net/es.pokemon/images/1/10/Tipo_veneno.gif/revision/latest?cb=20170114100535", "https://vignette.wikia.nocookie.net/pokemon/images/8/82/Type_Poison.gif/revision/latest?cb=20141023235047"),
+    Ground("ground", "https://vignette.wikia.nocookie.net/es.pokemon/images/1/1d/Tipo_tierra.gif/revision/latest?cb=20170114100533", "https://vignette.wikia.nocookie.net/pokemon/images/1/1d/Type_Ground.gif/revision/latest?cb=20141023234906"),
+    Rock("rock", "https://vignette.wikia.nocookie.net/es.pokemon/images/e/e0/Tipo_roca.gif/revision/latest?cb=20170114100446", "https://vignette.wikia.nocookie.net/pokemon/images/b/b3/Type_Rock.gif/revision/latest?cb=20141023235048"),
+    Grass("grass", "https://vignette.wikia.nocookie.net/es.pokemon/images/d/d6/Tipo_planta.gif/revision/latest?cb=20170114100444", "https://vignette.wikia.nocookie.net/pokemon/images/4/46/Type_Grass.gif/revision/latest?cb=20141023234906"),
+    Bug("bug", "https://vignette.wikia.nocookie.net/es.pokemon/images/f/fe/Tipo_bicho.gif/revision/latest?cb=20170114100153", "https://vignette.wikia.nocookie.net/pokemon/images/6/64/Type_Bug.gif/revision/latest?cb=20150711192341"),
+    Ghost("ghost", "https://vignette.wikia.nocookie.net/es.pokemon/images/4/47/Tipo_fantasma.gif/revision/latest?cb=20170114100329", "https://vignette.wikia.nocookie.net/pokemon/images/f/f2/Type_Ghost.gif/revision/latest?cb=20141023234905"),
+    Steel("steel", "https://vignette.wikia.nocookie.net/es.pokemon/images/d/d9/Tipo_acero.gif/revision/latest?cb=20170114100151", "https://vignette.wikia.nocookie.net/pokemon/images/a/ab/Type_Steel.gif/revision/latest?cb=20141023235048"),
+    Water("water", "https://vignette.wikia.nocookie.net/es.pokemon/images/9/94/Tipo_agua.gif/revision/latest?cb=20170114100152", "https://vignette.wikia.nocookie.net/pokemon/images/e/ed/Type_Water.gif/revision/latest?cb=20180304082247"),
+    Electric("electric", "https://vignette.wikia.nocookie.net/es.pokemon/images/1/1b/Tipo_el%C3%A9ctrico.gif/revision/latest?cb=20170114100155", "https://vignette.wikia.nocookie.net/pokemon/images/a/aa/Type_Electric.gif/revision/latest?cb=20141023234902"),
+    Psychic("psychic", "https://vignette.wikia.nocookie.net/es.pokemon/images/1/15/Tipo_ps%C3%ADquico.gif/revision/latest?cb=20170114100445", "https://vignette.wikia.nocookie.net/pokemon/images/6/65/Type_Psychic.gif/revision/latest?cb=20141023235048"),
+    Ice("ice", "https://vignette.wikia.nocookie.net/es.pokemon/images/4/40/Tipo_hielo.gif/revision/latest?cb=20170114100333", "https://vignette.wikia.nocookie.net/pokemon/images/8/84/Type_Ice.gif/revision/latest?cb=20141023235046"),
+    Dragon("dragon", "https://vignette.wikia.nocookie.net/es.pokemon/images/0/01/Tipo_drag%C3%B3n.gif/revision/latest?cb=20170114100154", "https://vignette.wikia.nocookie.net/pokemon/images/2/26/Type_Dragon.gif/revision/latest?cb=20141023234902"),
+    Dark("dark", "https://vignette.wikia.nocookie.net/es.pokemon/images/8/82/Tipo_siniestro.gif/revision/latest?cb=20170114100447", "https://vignette.wikia.nocookie.net/pokemon/images/0/0d/Type_Dark.gif/revision/latest?cb=20141023234901"),
+    Fairy("fairy", "https://vignette.wikia.nocookie.net/es.pokemon/images/b/bc/Tipo_hada.gif/revision/latest?cb=20170114100332", "https://vignette.wikia.nocookie.net/pokemon/images/7/74/Type_Fairy.gif/revision/latest?cb=20141023234903")
 }

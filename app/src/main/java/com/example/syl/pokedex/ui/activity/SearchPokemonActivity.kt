@@ -38,6 +38,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.example.syl.pokedex.model.Type
+import com.example.syl.pokedex.model.TypesLanguage
+import java.util.*
 
 class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
@@ -47,8 +50,9 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
     var etNumPokemon: EditText? = null
     var ivFrontDefault: ImageView? = null
     var ivFrontShiny: ImageView? = null
+    var ivType1: ImageView? = null
+    var ivType2: ImageView? = null
     var tvName: TextView? = null
-    var tvType: TextView? = null
     var wvTypeTable: WebView? = null
     lateinit var btnRefresh: Button
     lateinit var btnSearch: Button
@@ -65,9 +69,10 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         btnSearch = findViewById(R.id.btn_search)
         ivFrontDefault = findViewById(R.id.iv_sprite_default)
         ivFrontShiny = findViewById(R.id.iv_sprite_shiny)
+        ivType1 = findViewById(R.id.iv_type_1)
+        ivType2 = findViewById(R.id.iv_type_2)
         tvName = findViewById(R.id.tv_name)
         btnRefresh = findViewById(R.id.btn_refresh)
-        tvType = findViewById(R.id.tv_type)
         btnTypeTable = findViewById(R.id.btn_type_table)
         wvTypeTable = findViewById(R.id.wv_type_table)
 
@@ -98,21 +103,33 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     override fun showPokemon(pokemon: Pokemon?) = runOnUiThread {
         tvName?.text = pokemon?.name
 
-        tvType?.text = searchPokemonPresenter?.returnTypeOfPokemon(pokemon)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Picasso.with(this)
+                    .load(pokemon?.types?.get(0)?.type?.urlImage)
+                    .placeholder(getDrawable(R.drawable.loading))
+                    .error(getDrawable(R.drawable.silueta_interrogante))
+                    .into(ivType1)
+            if (pokemon?.types?.size == 2) {
+                ivType2?.visibility = View.VISIBLE
+                Picasso.with(this)
+                        .load(pokemon?.types?.get(1)?.type?.urlImage)
+                        .placeholder(getDrawable(R.drawable.loading))
+                        .error(getDrawable(R.drawable.silueta_interrogante))
+                        .into(ivType2)
+            } else {
+                ivType2?.visibility = View.GONE
+            }
+            Picasso.with(this)
                     .load(pokemon?.sprites?.frontDefault)
-                    .placeholder(getDrawable(R.drawable.silueta_interrogante))
+                    .placeholder(getDrawable(R.drawable.loading))
                     .error(getDrawable(R.drawable.silueta_interrogante))
                     .into(ivFrontDefault)
             Picasso.with(this)
                     .load(pokemon?.sprites?.frontShiny)
-                    .placeholder(getDrawable(R.drawable.silueta_interrogante))
+                    .placeholder(getDrawable(R.drawable.loading))
                     .error(getDrawable(R.drawable.silueta_interrogante))
                     .into(ivFrontShiny)
         }
@@ -120,21 +137,23 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
     override fun showLoading() = runOnUiThread {
         tvName?.text = getString(R.string.loading)
-        tvType?.text = getString(R.string.loading)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ivFrontShiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
-            ivFrontDefault?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            ivType1?.setImageDrawable(getDrawable(R.drawable.loading))
+            ivType2?.setImageDrawable(getDrawable(R.drawable.loading))
+            ivFrontShiny?.setImageDrawable(getDrawable(R.drawable.loading))
+            ivFrontDefault?.setImageDrawable(getDrawable(R.drawable.loading))
         }
     }
 
     override fun showError(msg: String?) = runOnUiThread {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
-        tvType?.text = "-"
         tvName?.text = "-"
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ivType1?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
+            ivType2?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
             ivFrontDefault?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
             ivFrontShiny?.setImageDrawable(getDrawable(R.drawable.silueta_interrogante))
         }
@@ -147,6 +166,7 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
     override fun showTypeTable() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
         var webSettings = wvTypeTable?.settings
         webSettings?.javaScriptEnabled = true
         wvTypeTable?.webViewClient = WebViewClient()
