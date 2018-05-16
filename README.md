@@ -17,10 +17,10 @@ Or maybe press "Random" and it will show you some pokémon
   </tr>
   <tr>
     <td align="center">
-      <img src="https://i.imgur.com/WRkZ040.png" width="300px">
+      <img src="https://i.imgur.com/AbxnoLI.png" width="300px">
     </td>
     <td align="center">
-      <img src="https://i.imgur.com/ikfHjHn.png" width="300px">
+      <img src="https://i.imgur.com/Xsc3KWl.png" width="300px">
     </td>
   </tr>
   <tr>
@@ -29,7 +29,7 @@ Or maybe press "Random" and it will show you some pokémon
   </tr>
   <tr>
     <td align="center">
-      <img src="https://i.imgur.com/S5TLU65.png" width="300px">
+      <img src="https://i.imgur.com/XnYioJi.png" width="300px">
     </td>
     <td align="center">
       <img src="https://i.imgur.com/PnYxOMt.png" width="400px">
