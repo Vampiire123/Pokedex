@@ -1,3 +1,5 @@
+<img src="https://travis-ci.org/Vampiire123/Pokedex.svg?branch=master">
+
 # Pokédex
 
 Search your favourite pokémon in this pokédex, watch his type and his debilities with the table of types!
