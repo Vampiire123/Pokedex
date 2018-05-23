@@ -15,8 +15,8 @@
  */
 package com.example.syl.pokedex.model
 
-data class Type(var type: InfoType? = null) {
+data class Type(var name: String?, var urlImage: String?) {
     override fun toString(): String {
-        return "${type?.name}"
+        return "name: $name url: $urlImage"
     }
 }

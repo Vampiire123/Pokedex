@@ -83,11 +83,11 @@ class SearchPokemonPresenter(val context: Context, val getPokemon: GetPokemon) :
 
         for (type: Type in types!!) {
             languageType.forEach {
-                if (type.type?.name?.equals(it.value)!!) {
+                if (type.name?.equals(it.value)!!) {
                     if (Locale.getDefault().displayLanguage == Locale.ENGLISH.displayLanguage) {
-                        type.type?.urlImage = it.imageUrlEnglish
+                        type.urlImage = it.imageUrlEnglish
                     } else {
-                        type.type?.urlImage = it.imageUrlSpanish
+                        type.urlImage = it.imageUrlSpanish
                     }
                 }
             }

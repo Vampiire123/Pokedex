@@ -19,6 +19,7 @@ import com.example.syl.pokedex.model.Type
 
 class TypeApiEntry(var type: InfoTypeApiEntry? = null) {
     inline fun toDomain(): Type = Type(
-            type = type?.toDomain()
+        name = type?.name,
+        urlImage = type?.urlImage
     )
 }

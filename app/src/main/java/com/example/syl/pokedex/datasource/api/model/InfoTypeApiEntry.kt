@@ -15,11 +15,4 @@
  */
 package com.example.syl.pokedex.datasource.api.model
 
-import com.example.syl.pokedex.model.InfoType
-
-class InfoTypeApiEntry(var name: String, var urlImage: String?) {
-    inline fun toDomain(): InfoType = InfoType(
-            name = name,
-            urlImage = urlImage
-    )
-}
+class InfoTypeApiEntry(var name: String, var urlImage: String?)

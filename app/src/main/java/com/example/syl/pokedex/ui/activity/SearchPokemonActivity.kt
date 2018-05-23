@@ -104,14 +104,14 @@ class SearchPokemonActivity : BaseActivity(), SearchPokemonPresenter.View {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Picasso.with(this)
-                    .load(pokemon?.types?.get(0)?.type?.urlImage)
+                    .load(pokemon?.types?.get(0)?.urlImage)
                     .placeholder(getDrawable(R.drawable.loading))
                     .error(getDrawable(R.drawable.silueta_interrogante))
                     .into(ivType1)
             if (pokemon?.types?.size == 2) {
                 ivType2?.visibility = View.VISIBLE
                 Picasso.with(this)
-                        .load(pokemon?.types?.get(1)?.type?.urlImage)
+                        .load(pokemon?.types?.get(1)?.urlImage)
                         .placeholder(getDrawable(R.drawable.loading))
                         .error(getDrawable(R.drawable.silueta_interrogante))
                         .into(ivType2)
